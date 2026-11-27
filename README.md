@@ -1,6 +1,19 @@
+<p align="center"><img src="docs/banner.png" alt="Asena Mask" width="100%"></p>
+
+<p align="center">
+<a href="https://github.com/asenavfx/asena-mask/releases/latest"><img src="https://img.shields.io/github/v/release/asenavfx/asena-mask?style=for-the-badge&color=8b5cf6" alt="Latest release"></a>
+<a href="https://github.com/asenavfx/asena-mask/releases"><img src="https://img.shields.io/github/downloads/asenavfx/asena-mask/total?style=for-the-badge&color=d946ef" alt="Downloads"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-0ea5e9?style=for-the-badge" alt="GPL-3.0"></a>
+<a href="https://www.instagram.com/asenavfx/"><img src="https://img.shields.io/badge/Instagram-@asenavfx-e1306c?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
+</p>
+
+<p align="center"><a href="https://github.com/asenavfx/asena-mask/releases/latest"><b>⬇ Download for Windows</b></a> · <a href="https://asenatools.com">asenatools.com</a> · <a href="https://www.instagram.com/asenavfx/">Instagram</a></p>
+
 # Asena Mask
 
 AI video cut-outs for Windows. Pick a subject with a box, points or a brush, and Asena Mask tracks it through the whole clip with Meta's SAM 3.1. Then export a clean alpha matte, a transparent video, or the subject over a new background. Everything runs on your own PC.
+
+<p align="center"><img src="docs/project-aurora.jpg" alt="Asena Mask project view" width="100%"></p>
 
 Free and open source (GPL-3.0). Made by [Asenavfx](https://www.instagram.com/asenavfx/) · [asenatools.com](https://asenatools.com)
 
@@ -17,6 +30,14 @@ Get **Asena Mask Setup.exe** from the [Releases](../../releases) page. The insta
 - **Backgrounds**: transparent, blurred original, gradients.
 - **Presets**: Fast preview, Best quality, Clean anime edge, Soft hair / fur, Tight cut.
 - **Glitch report**: after a job, lists the times where the cut-out may have slipped, so you can fix them in Trim.
+
+## Three looks
+
+Pick the one you like in Settings: **Aurora**, the Windows 7 style **Frutiger Aero**, or the retro-console **Retro**.
+
+<p align="center"><img src="docs/looks.jpg" alt="Aurora, Frutiger Aero and Retro looks" width="100%"></p>
+
+<table><tr><td><img src="docs/project-aero.jpg" alt="Frutiger Aero project view"></td><td><img src="docs/project-retro.jpg" alt="Retro project view"></td></tr></table>
 
 ## Privacy
 
