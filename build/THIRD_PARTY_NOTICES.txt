@@ -1,0 +1,21 @@
+ASENA MASK - THIRD-PARTY SOFTWARE AND LICENCES
+===============================================
+
+Asena Mask is an independent project. It is not affiliated with, endorsed by, or sponsored by
+Meta Platforms, Inc. or Comfy Org.
+
+Components
+----------
+* ComfyUI (engine code, run as a separate process)  - GNU GPL v3.   https://github.com/comfyanonymous/ComfyUI
+  The full licence text is in ComfyUI-LICENSE-GPL-3.0.txt. Because Asena Mask includes and runs ComfyUI code,
+  the source code of Asena Mask is published under the same licence: https://asenatools.com/#legal
+* SAM 3 / SAM 3.1 model by Meta                      - SAM License (see https://github.com/facebookresearch/sam3).
+  The model file is downloaded by the installer from the official Hugging Face repository (Comfy-Org/sam3.1).
+* PyTorch                                            - BSD-style licence.  https://pytorch.org
+* PySide6 / Qt for Python (app window)               - LGPL v3.            https://www.qt.io/qt-for-python
+* Python, FFmpeg (via imageio-ffmpeg), PyAV, NumPy, Pillow and other libraries are used under their own
+  open-source licences.
+
+"Meta", "SAM", "ComfyUI" and other names belong to their owners.
+
+Asena Mask  (c) 2026 Asenavfx.

@@ -1,0 +1,13 @@
+BUILDING ASENA MASK FROM SOURCE
+================================
+Run from source (needs a Python that has PyTorch + ComfyUI's requirements):
+    python -m pip install PySide6-Essentials av pillow numpy imageio-ffmpeg
+    python main.py
+The app looks for ComfyUI (with the SAM 3 nodes) via asenamask/paths.py, or inside the installed app folder.
+The AI model (sam3.1_multiplex_fp16.safetensors) goes into models/checkpoints next to it.
+
+Build the installer on Windows:
+    powershell -ExecutionPolicy Bypass -File build\build_all.ps1 -ComfySource "C:\path\to\ComfyUI"
+The artwork, sounds and logo animation (asenamask/assets) are not part of the source release (all rights reserved).
+The app runs without them (silent, drawn logo). To build the exe, put your own icon.ico and logo.png in asenamask/assets.
+The app is licensed under the licences listed in build/THIRD_PARTY_NOTICES.txt (ComfyUI is GPL-3.0).

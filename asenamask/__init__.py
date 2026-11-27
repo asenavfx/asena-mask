@@ -1,5 +1,5 @@
 APP_NAME = "Asena Mask"
-APP_VERSION = "1.0.4"          # numeric version (used for the exe / installer)
+APP_VERSION = "1.0.5"          # numeric version (used for the exe / installer)
 APP_STAGE = "Beta"
 BUILD_NAME = "Genesis"
 BUILD_LABEL = "v%s %s  ✦  %s" % (APP_VERSION, APP_STAGE, BUILD_NAME)

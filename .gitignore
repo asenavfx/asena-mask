@@ -9,3 +9,10 @@ installer/flavor.py
 *.ckpt
 keys/
 *.key
+
+build/venv/
+build/dist/
+build/work*/
+build/comfy_src/
+build/stage/
+build/*.spec
