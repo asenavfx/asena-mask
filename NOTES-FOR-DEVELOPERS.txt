@@ -1,0 +1,57 @@
+ASENA MASK  v1.0.4 Beta (Genesis)
+
+Run (PowerShell, from the project folder):
+   & ".\venv\Scripts\python.exe" .\main.py
+
+Demo mode (no AI, fake mask):
+   $env:ASENA_DEMO="1"; & ".\venv\Scripts\python.exe" .\main.py
+
+ComfyUI when running from source: set $env:ASENA_COMFY to your ComfyUI folder (the one with main.py),
+or put it in engine\ComfyUI next to main.py.
+
+To see the first-run welcome screen again, delete:
+   %APPDATA%\AsenaMask\settings.json
+
+Artwork lives in asenamask\assets (icon.ico, logo.png, logo_anim.mp4, sounds\).
+
+INSTALLER / RELEASE
+   See build\BUILD_AND_RELEASE.txt  (build\build_all.ps1 makes "Asena Mask Setup.exe" + AsenaMask-app.zip).
+
+SIGNED UPDATES
+   version.json must be signed: python tools\sign_release.py sign release\version.json  (key: ..\AsenaMask-keys next to the project folder, keep a backup).
+   Upload version.json and version.json.sig together; the app and installer ignore an unsigned or edited version.json.
+
+ANONYMOUS STATS (opt-in, off by default) / ASENA WRAPPED (hidden until you launch it)
+   asenamask\telemetry.py: what is counted. Nothing is sent until DEFAULT_ENDPOINT is set.
+   Off by default. The installer's welcome page has a "Share anonymous usage stats" switch (off) and writes the choice to settings.json.
+   Discord "Playing Asena Mask" is also off by default (Settings > Privacy).
+   Settings > Privacy has the switch and "Show exactly what would be sent". Mention it in version.json "notes" when you release.
+   WRAPPED_ENABLED = False in telemetry.py keeps the whole Wrapped hidden (no banner, no Wrapped window, no Wrapped page).
+   Totals are still counted on the user's PC and, sent to your stats page, so you build up a year of data.
+   LAUNCHING IT LATER: set WRAPPED_ENABLED = True, raise APP_VERSION, release the update, then publish wrapped.json
+   (see AsenaStats\README.txt). The update shows a "Your Asena Wrapped is here" banner on Home and a button in Settings > Privacy.
+   People who used the app before keep their old totals on their own PC (never uploaded).
+
+STABILITY (v1.0.2)
+   Tracked masks (a subject picked with box / points) are cleaned before saving: asenamask\common.py stabilize_masks() does a temporal
+   median over 3 (or 5) frames to vote away one-frame dropouts and specks, then closes small holes / torn notches; sharpen_alpha() keeps
+   the edge crisp after the mask is scaled up. Setting "stability" 0-3 (default 2), shown as "Stability" next to Refine iterations.
+   Not applied to text-prompt-only mode (no tracking), which has no neighbouring-frame step.
+
+OLDER NVIDIA CARDS (GTX 900 / 10-series)
+   The CUDA 12.8 PyTorch builds contain no kernels for compute capability below 7.0 ("no kernel image is available").
+   Installer: reads compute_cap from nvidia-smi and installs torch 2.8.0 from the cu126 index for those cards (config.py
+   TORCH_INDEX_LEGACY). App: common._check_gpu_kernels() shows a plain message + the pip command instead of a raw CUDA traceback.
+   Manual fix for an already installed copy (replace the path with the user's install folder):
+     "...\Asena Mask\runtime\python.exe" -m pip install --force-reinstall torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu126
+
+
+NEW IN 1.0.4
+- Duplicate frames: if a clip holds the same picture for several frames (anime, slideshows), those frames are processed once and reused. Faster, and no flicker between them.
+- Edge cleanup (0-2): removes the coloured halo of the old background around the cutout. Raise it if you see a thin coloured outline.
+- Backgrounds: Blurred original, Gradient Sunset, Gradient Night, Gradient Studio grey.
+- Presets: Fast preview, Best quality, Clean anime edge, Soft hair / fur, Tight cut (no halo).
+- When a job finishes, Mask lists the times where the cutout may have glitched. Open Trim & pick subject at that time, add a box or brush stroke, and run again.
+- Discord activity: while Asena Mask is open, Discord shows "Playing Asena Mask" with a progress percentage during a cutout, like any game. Needs the Discord app running. No file names or video content. People can hide it in Discord (User Settings > Activity Privacy). asenamask\discordrp.py holds the Application ID.
+- Live highlight: the first-frame mask is cleaned of tiny floating specks and pinholes (real gaps such as between hair strands are kept), and the outline is smooth. The AI engine now starts when a clip is opened, runs a short warm-up, and restarts after a render. It unloads after 10 idle minutes (Settings > Engine, was 5).
+- Moving points: in Trim & pick subject, put points or boxes on a few frames (for example the start and where the subject ends up). On the frames in between, dashed markers show where the subject probably is (they glide from one picked frame to the next) and the live highlight looks there. Click on any frame to correct it; that frame becomes a new picked frame. The final render tracks the subject with the AI from your picked frames, so the dashed markers are only a guide.
